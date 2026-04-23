@@ -30,7 +30,7 @@ class SupabaseAuth:
                 self.enabled = True
             else:
                 self.enabled = False
-                st.warning("⚠️ Supabase credentials not found. Using demo mode.")
+                # st.warning("⚠️ Supabase credentials not found. Using demo mode.")
                 
         except ImportError:
             self.enabled = False

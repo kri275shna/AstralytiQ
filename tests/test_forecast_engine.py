@@ -233,7 +233,7 @@ class TestARIMAForecaster:
         forecaster.train(data, order=(1, 1, 1))
         predictions, lower, upper = forecaster.predict(periods=10)
         
-        asserert len(predictions) == 10
+        assert len(predictions) == 10
         assert len(lower) == 10
         assert len(upper) == 10
     

@@ -362,7 +362,7 @@ def show_forecast_visualization(model_id, periods):
                 st.dataframe(forecast_df, use_container_width=True)
         
         else:
-            st.error(f"Failed to get forecast: {response.text}")
+            st.error(f"Failed to get forecast: {forecast_data.get('error', 'Unknown error')}")
     
     except Exception as e:
         st.error(f"Error displaying forecast: {str(e)}")

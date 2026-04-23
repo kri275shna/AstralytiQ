@@ -14,6 +14,13 @@ import signal
 import threading
 from pathlib import Path
 
+# Fix for Windows console emoji decoding
+if sys.stdout and sys.stdout.encoding.lower() != 'utf-8':
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except AttributeError:
+        pass
+
 def print_banner():
     """Print startup banner."""
     print("""
@@ -96,12 +103,12 @@ def start_backend():
 def start_frontend():
     """Start Streamlit frontend."""
     print("\n🎨 Starting Streamlit Frontend...")
-    print("   URL: http://localhost:8501")
+    print("   URL: http://localhost:8505")
     
     try:
         process = subprocess.Popen([
-            sys.executable, "-m", "streamlit", "run", "app_with_backend.py",
-            "--server.port", "8501",
+            sys.executable, "-m", "streamlit", "run", "app.py",
+            "--server.port", "8505",
             "--server.headless", "true"
         ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
@@ -166,7 +173,7 @@ def show_demo_info():
     ==================================
     
     📱 Frontend (Streamlit):
-       URL: http://localhost:8501
+       URL: http://localhost:8505
        Features: Enterprise UI, Real-time Dashboard, Mobile Responsive
     
     🔧 Backend (FastAPI):

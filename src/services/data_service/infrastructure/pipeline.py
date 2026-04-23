@@ -455,7 +455,7 @@ class FormatSpecificProcessor:
         
         # Check for CDATA sections
         for col in df.select_dtypes(include=['object']).columns:
-            if df[col].astype(str).str.contains('<!\[CDATA\[', na=False).any():
+            if df[col].astype(str).str.contains(r'<!\[CDATA\[', na=False).any():
                 issues.append(f"CDATA sections found in column '{col}'")
         
         # Check for mixed content (text and elements)
